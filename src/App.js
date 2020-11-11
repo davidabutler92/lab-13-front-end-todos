@@ -9,13 +9,22 @@ import Todos from './Todos.js';
 import Login from './Login.js'
 import SignUp from './SignUp.js'
 import PrivateRoute from './PrivateRoute.js';
+import { TOKEN, USERNAME } from './constants';
 
 export default class App extends Component {
-  state = { token: localStorage.getItem('TOKEN') }
+  state = { 
+    token: localStorage.getItem(TOKEN),
+    userName: localStorage.getItem(USERNAME)
+  }
 
   handleTokenChange = (myToken) => {
     this.setState({ token: myToken });
-    localStorage.setItem('TOKEN', myToken);
+    localStorage.setItem(TOKEN, myToken);
+  }
+
+  handleUserChange = (myToken) => {
+    this.setState({ token: myToken });
+    localStorage.setItem(USERNAME, myToken);
   }
 
   render() {
