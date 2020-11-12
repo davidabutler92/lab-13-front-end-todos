@@ -19,12 +19,12 @@ export default class SignUp extends Component {
 
         this.props.handleTokenUserChange(user.body.token, user.body.email)
 
-        this.props.history.push('/todos')
+        this.props.history.push('/login')
     }
 
     render() {
         return (
-            <div>
+            <div className='list'>
                 <h2>Login</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label>
