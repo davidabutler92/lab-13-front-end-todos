@@ -10,43 +10,50 @@ import Login from './Login.js'
 import SignUp from './SignUp.js'
 import PrivateRoute from './PrivateRoute.js';
 import { TOKEN, USERNAME } from './constants';
+import Header from './Header.js';
 
 export default class App extends Component {
   state = { 
-    token: localStorage.getItem(TOKEN),
-    userName: localStorage.getItem(USERNAME)
+    userName: localStorage.getItem(USERNAME) || '',
+    token: localStorage.getItem(TOKEN) || ''
   }
 
-  handleTokenChange = (myToken) => {
-    this.setState({ token: myToken });
-    localStorage.setItem(TOKEN, myToken);
+  handleTokenUserChange = (token, email) => {
+    localStorage.setItem(USERNAME, email);
+    localStorage.setItem(TOKEN, token);
+    this.setState({ 
+      userName: email,
+      token: token 
+    });
   }
 
-  handleUserChange = (myToken) => {
-    this.setState({ token: myToken });
-    localStorage.setItem(USERNAME, myToken);
+  logout = () => {
+    localStorage.setItem(USERNAME, '');
+    localStorage.setItem(TOKEN, '');
+    this.setState({ 
+      userName: '',
+      token: '' 
+    });
   }
+
+  
 
   render() {
     return (
       <div>
         <Router>
-          <ul>
-            { this.state.token && <div>welcome, user!!!</div> }
-            { this.state.token && <Link to="/todos"><div>todos</div></Link> }
-            <Link to="/login"><div>log in</div></Link>
-            <Link to="/signup"><div>sign up</div></Link>
-            <button onClick={() => this.handleTokenChange('')}>logout</button>
-          </ul>
+        <Header
+        token={this.state.token}
+        logout={this.logout}/>
           <Switch>
             <Route exact path='/login' render={(routerProps) => <Login 
-                handleTokenChange={this.handleTokenChange} 
+                handleTokenUserChange={this.handleTokenUserChange} 
                 {...routerProps} />} 
               />
             <Route 
             exact path='/signup' 
               render={(routerProps) => <SignUp 
-                handleTokenChange={this.handleTokenChange} 
+                handleTokenUserChange={this.handleTokenUserChange} 
                 {...routerProps}/>} 
               />
             <PrivateRoute 

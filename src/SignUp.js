@@ -1,15 +1,25 @@
 import React, { Component } from 'react'
+import { createUser } from './servers';
 
 export default class SignUp extends Component {
 
     state = {
         email: '',
-        password: ''
+        password: '',
+        loading: false
     }
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        
+        this.setState({ loading: true })
+
+        const user = await createUser(this.state);
+
+        await this.setState({ loading: false })
+
+        this.props.handleTokenUserChange(user.body.token, user.body.email)
+
+        this.props.history.push('/todos')
     }
 
     render() {
