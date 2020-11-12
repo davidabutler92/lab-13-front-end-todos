@@ -10,6 +10,7 @@ import SignUp from './SignUp.js'
 import PrivateRoute from './PrivateRoute.js';
 import { TOKEN, USERNAME } from './constants';
 import Header from './Header.js';
+import './App.css';
 
 export default class App extends Component {
   state = { 
@@ -37,9 +38,10 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className='mainHeader'>
         <Router>
-        <Header
+        <Header      
+        userName={ this.state.userName }
         token={this.state.token}
         logout={this.logout}/>
           <Switch>

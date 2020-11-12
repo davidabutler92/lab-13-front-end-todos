@@ -12,8 +12,7 @@ export default class Todos extends Component {
     fetchTodoSetState = async () => {
         this.setState({ loading: true })
         const response =  await fetchTodos();
-        this.setState({ todos: response.body, loading: false })
-        
+        this.setState({ todos: response.body, loading: false })      
     }
 
     componentDidMount = async () => {
@@ -27,8 +26,8 @@ export default class Todos extends Component {
             todo: this.state.todo
         };
 
-        await createTodo(newTodo)
-        await this.fetchTodoSetState(); 
+        await createTodo(newTodo) 
+        await this.fetchTodoSetState();
     }
 
     handleCompletedTodo = async (someId) => {
