@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { createUser } from './servers';
+import { createUser } from './todosApi';
 
 export default class SignUp extends Component {
 
@@ -25,9 +25,11 @@ export default class SignUp extends Component {
     render() {
         return (
             <div>
+                <h2>Sign Up</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         <input 
+                            required
                             onChange={(e) => this.setState({ email: e.target.value })} 
                             type='text'
                             placeholder='Email'>                       
@@ -35,12 +37,14 @@ export default class SignUp extends Component {
                     </label>
                     <label>
                         <input 
+                            required
                             onChange={(e) => this.setState({ password: e.target.value })} 
                             type='password'
                             placeholder='password'>                           
                         </input>
                     </label>
-                    <button>Sign up</button>
+                    <button 
+                    className='button2'>Sign up</button>
                 </form>
             </div>
         )

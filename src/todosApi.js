@@ -6,9 +6,24 @@ const URL = 'https://warm-bayou-77109.herokuapp.com'
 export async function fetchTodos() {
     const TOKEN = localStorage.getItem('TOKEN');
     try {
-        return await request
+        const response = await request
                 .get(`${URL}/api/todos`)
                 .set('Authorization', TOKEN)
+                return response
+            } catch(err) {
+        throw err;
+    }
+}
+
+export async function updateTodo(id) {
+    const TOKEN = localStorage.getItem('TOKEN');
+    try {
+        return await request
+                .put(`${URL}/api/todos/${id}`)
+                .set('Authorization', TOKEN)
+                .send({
+                    completed: true
+                })
     } catch(err) {
         throw err;
     }
@@ -19,7 +34,7 @@ export function createTodo(item) {
     try {
         return request
                 .post(`${URL}/api/todos`, item)
-                .set('Authorization', TOKEN)
+                .set('Authorization', TOKEN)              
     } catch(err) {
         throw err;
     }
