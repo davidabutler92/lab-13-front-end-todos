@@ -44,26 +44,28 @@ const {
 
 
         return (
-            <div>
-                <h2>TODO LIST</h2>
+            <div className=''>
+                <h2>Todo List</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        <input 
+                        <input
+                        required 
                         onChange={(e) => this.setState({ todo: e.target.value})} 
                         placeholder='add todo'></input>
                     </label>
-                    <button>Add</button>
+                    <button
+                    className='button2'>Add</button>
                 </form>
                 {
                     loading 
                         ? '...' 
-                        : todos.map(todo => <div key={`${todo.todo}`} style={{ 
-                            textDecoration: this.completed ? 'line-through' : 'none' }
+                        : todos.map(todo => <div className='list' key={`${todo.todo}`} style={{ 
+                            textDecoration: todo.completed ? 'line-through' : 'none' }
                         }>
                         {todo.todo}
                         {
                             todo.completed ? '' : <button 
-                                className='completedButton'
+                                className='button2'
                                 onClick={() => this.handleCompletedTodo(todo.id)}>
                                 Completed
                             </button>
