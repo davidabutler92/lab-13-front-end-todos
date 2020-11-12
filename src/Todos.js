@@ -44,7 +44,7 @@ const {
 
 
         return (
-            <div className=''>
+            <div className='list'>
                 <h2>Todo List</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label>
@@ -58,7 +58,7 @@ const {
                 </form>
                 {
                     loading 
-                        ? '...' 
+                        ? 'LOADING' 
                         : todos.map(todo => <div className='list' key={`${todo.todo}`} style={{ 
                             textDecoration: todo.completed ? 'line-through' : 'none' }
                         }>
